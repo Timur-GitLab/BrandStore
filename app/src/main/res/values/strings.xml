@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">brandstoreUz</string>
+    <string name="favourites">Избранное</string>
+    <string name="home">Главная</string>
+    <string name="chat">Чат</string>
+    <string name="shopcart">Корзина</string>
+    <string name ="profile">Профиль</string>
+
+
+    <string name ="populacategory">Популярные категории</string>
+    <string name ="brands">Бренды</string>
+
+    <string-array name="Categories">
+        <item>Новые товары</item>
+        <item>Аксессуары</item>
+        <item>Популярные товары</item>
+        <item>Товары недели</item>
+        <item>Рекомендуемые</item>
+        <item>Товары дешевле 1 000 000 сум</item>
+        <item>Товары дешевле 500 000 сум</item>
+        <item>Товары дешевле 200 000 сум</item>
+    </string-array>
+
+    <string-array name="PopularCategory">
+        <item>Моноблоки</item>
+        <item>Компьютеры</item>
+        <item>ИБП(Источники бесперебойного питания)</item>
+        <item>Игровые мыши</item>
+        <item>Игровые наушники</item>
+        <item>Игровые клавиатуры</item>
+        <item>МФУ</item>
+        <item>Видеокарты</item>
+        <item>Wi-Fi адаптеры</item>
+        <item>Модули памяти</item>
+        <item>Мониторы</item>
+        <item>Материнские платы</item>
+    </string-array>
+
+    <string-array name="Description">
+        <item>Внешний SSD Netac Z sLIM 256GB</item>
+        <item>Мышь Logitech G402 Hyperion Fury</item>
+        <item>Wi-Fi маршрутизатор Tenda F6</item>
+        <item>Ноутбук HP 250 G7 / N5030 / 4GB / 1TB</item>
+        <item>SSD Lexar NS100 128GB</item>
+    </string-array>
+
+    <string-array name="Installment">
+        <item>54 100 сум/мес</item>
+        <item>47 700 сум/мес</item>
+        <item>18 200 сум/мес</item>
+        <item>432 700 сум/мес</item>
+        <item>28 600 сум/мес</item>
+    </string-array>
+
+    <string-array name="Prices">
+        <item>649 000 сум</item>
+        <item>572 000 сум</item>
+        <item>218 000 сум</item>
+        <item>5 192 000 сум</item>
+        <item>342 000 сум</item>
+    </string-array>
+
+</resources>
