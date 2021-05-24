@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginStart="25dp"
-        android:text="Товары дешевле 1 000 000 сум"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"/>
@@ -36,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="20dp"
         android:layout_below="@id/insideRel"
-        android:layout_height="200dp"
+        android:layout_height="204dp"
         android:orientation="horizontal">
 
     </androidx.recyclerview.widget.RecyclerView>

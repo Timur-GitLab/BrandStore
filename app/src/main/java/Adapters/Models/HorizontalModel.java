@@ -10,15 +10,6 @@ public class HorizontalModel {
     String installment;
     String price;
 
-    public String getChildTitle() {
-        return childTitle;
-    }
-
-    public void setChildTitle(String childTitle) {
-        this.childTitle = childTitle;
-    }
-
-    String childTitle;
     Drawable icon;
 
     public String getDescription() {

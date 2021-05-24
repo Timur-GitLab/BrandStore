@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 horizontalModel.setDescription(description.get(j));
                 horizontalModel.setInstallment(installment.get(j));
                 horizontalModel.setPrice(price.get(j));
-                horizontalModel.setChildTitle(String.valueOf(j+1));
 
                 arrayListHorizontal.add(horizontalModel);
             }

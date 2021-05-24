@@ -46,7 +46,7 @@ public class HorizontalRecyclerViewAdapter  extends RecyclerView.Adapter<Horizon
         holder.installment.setText(horizontalModel.getInstallment());
         holder.price.setText(horizontalModel.getPrice());
 
-        holder.itemView.setOnClickListener(v -> Toast.makeText(context,"Item " + horizontalModel.getChildTitle(),Toast.LENGTH_SHORT).show());
+        holder.itemView.setOnClickListener(v -> Toast.makeText(context,"Item " + position,Toast.LENGTH_SHORT).show());
     }
 
     @Override
