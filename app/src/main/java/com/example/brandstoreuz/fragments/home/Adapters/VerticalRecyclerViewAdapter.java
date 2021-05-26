@@ -1,8 +1,7 @@
-package Adapters;
+package com.example.brandstoreuz.fragments.home.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,8 +18,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import Adapters.Models.HorizontalModel;
-import Adapters.Models.VerticalModel;
+import com.example.brandstoreuz.fragments.home.Adapters.Models.HorizontalModel;
+import com.example.brandstoreuz.fragments.home.Adapters.Models.VerticalModel;
 
 public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRecyclerViewAdapter.VerticalRVViewHolder> {
     Context context;
@@ -42,7 +41,7 @@ public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRe
     @Override
     public void onBindViewHolder(@NonNull @NotNull VerticalRecyclerViewAdapter.VerticalRVViewHolder holder, int position) {
         VerticalModel verticalModel = arrayList.get(position);
-        String title  = verticalModel.getTitle();
+        String title = verticalModel.getTitle();
         ArrayList<HorizontalModel> singleItem = verticalModel.getArrayList();
 
         holder.textViewTitle.setText(title);
@@ -50,9 +49,7 @@ public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRe
 
         holder.recyclerView.setHasFixedSize(true);
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
-
         holder.recyclerView.setAdapter(horizontalRecyclerViewAdapter);
-
         holder.btnMore.setOnClickListener(v -> Toast.makeText(context,verticalModel.getTitle(),Toast.LENGTH_SHORT).show());
     }
 

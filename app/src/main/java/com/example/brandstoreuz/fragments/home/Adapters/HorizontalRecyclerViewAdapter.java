@@ -1,4 +1,4 @@
-package Adapters;
+package com.example.brandstoreuz.fragments.home.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.brandstoreuz.R;
@@ -18,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import Adapters.Models.HorizontalModel;
+import com.example.brandstoreuz.fragments.home.Adapters.Models.HorizontalModel;
 
 public class HorizontalRecyclerViewAdapter  extends RecyclerView.Adapter<HorizontalRecyclerViewAdapter.HorizontalRVViewHolder> {
 

@@ -1,4 +1,4 @@
-package com.example.brandstoreuz;
+package com.example.brandstoreuz.fragments.home.Adapters;
 
 
 import android.graphics.drawable.Drawable;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.brandstoreuz.R;
 
 import org.jetbrains.annotations.NotNull;
 

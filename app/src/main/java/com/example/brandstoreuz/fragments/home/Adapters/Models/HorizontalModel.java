@@ -1,7 +1,6 @@
-package Adapters.Models;
+package com.example.brandstoreuz.fragments.home.Adapters.Models;
 
 import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
 
 public class HorizontalModel {
 

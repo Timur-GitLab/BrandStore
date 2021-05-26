@@ -1,4 +1,4 @@
-package Adapters.Models;
+package com.example.brandstoreuz.fragments.home.Adapters.Models;
 
 import java.util.ArrayList;
 

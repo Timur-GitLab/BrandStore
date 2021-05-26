@@ -35,7 +35,7 @@ android {
             aidl.srcDirs = ['src/main/aidl', '.apt_generated']
             assets.srcDirs = ['src/main/assets']
             res.srcDirs = [
-                    'src/main/res'
+                    'src/main/res', 'src\\main\\res', 'src\\main\\res\\layouts\\home', 'src\\main\\res\\layouts\\favourites', 'src\\main\\res\\layouts\\chat', 'src\\main\\res\\layouts\\cart', 'src\\main\\res\\layouts\\profile'
             ]
         }
     }

@@ -1,15 +1,18 @@
 package com.example.brandstoreuz;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.MenuItem;
 import android.view.WindowManager;
 
 
@@ -17,94 +20,53 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import Adapters.Models.HorizontalModel;
-import Adapters.Models.VerticalModel;
-import Adapters.VerticalRecyclerViewAdapter;
+import com.example.brandstoreuz.fragments.cart.CartFragment;
+import com.example.brandstoreuz.fragments.chat.ChatFragment;
+import com.example.brandstoreuz.fragments.favourites.FavouritesFragment;
+import com.example.brandstoreuz.fragments.home.Adapters.GridBrandsRecyclerAdapter;
+import com.example.brandstoreuz.fragments.home.Adapters.GridRecyclerAdapter;
+import com.example.brandstoreuz.fragments.home.Adapters.HorizontalSliderAdapter;
+import com.example.brandstoreuz.fragments.home.Adapters.Models.HorizontalModel;
+import com.example.brandstoreuz.fragments.home.Adapters.Models.VerticalModel;
+import com.example.brandstoreuz.fragments.home.Adapters.VerticalRecyclerViewAdapter;
+import com.example.brandstoreuz.fragments.home.HomeFragment;
+import com.example.brandstoreuz.fragments.profile.ProfileFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity {
 
-    static List<Drawable> drawables = new ArrayList<>();
-    static List<String> strings = new ArrayList<>();
 
-    ArrayList<VerticalModel> arrayListVertical;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,new HomeFragment()).commit();
 
-        //установка адаптера на слайдер
-        ViewPager2 viewPager2 = findViewById(R.id.viewPagerImageSlide);
-        drawables = loadImageFromAsset("TopImageSlider");
-        viewPager2.setAdapter(new HorizontalSliderAdapter(drawables));
-
-        //установка адаптера на вертикальный список
-        RecyclerView verticalRecyclerView = (RecyclerView) findViewById(R.id.mainRecyclerview);
-        verticalRecyclerView.setHasFixedSize(true);
-        verticalRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        arrayListVertical = new ArrayList<>();
-        verticalRecyclerView.setAdapter(new VerticalRecyclerViewAdapter(this, arrayListVertical));
-        setData();
-
-        //установка адаптера на GridLayout, популярные категории
-        RecyclerView gridRecyclerView = findViewById(R.id.gridRecyclerView);
-        gridRecyclerView.setHasFixedSize(true);
-        gridRecyclerView.setLayoutManager(new GridLayoutManager(this,4));
-        drawables = loadImageFromAsset("PopularCategory");
-        strings = loadStringFromAsset(R.array.PopularCategory);
-        gridRecyclerView.setAdapter(new GridRecyclerAdapter(drawables,strings));
-
-        //установка ячеек брендов
-        RecyclerView gridBrandsRecyclerView = findViewById(R.id.brandsRecyclerview);
-        gridBrandsRecyclerView.setHasFixedSize(true);
-        gridBrandsRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        drawables = loadImageFromAsset("Brands");
-        gridBrandsRecyclerView.setAdapter(new GridBrandsRecyclerAdapter(this,drawables));
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
     }
 
-    private void setData() {
-        List<String> categories = loadStringFromAsset(R.array.Categories);
-
-        for(int i = 0; i < categories.size(); i++){
-            VerticalModel verticalModel = new VerticalModel();
-            verticalModel.setTitle(categories.get(i));
-            ArrayList<HorizontalModel> arrayListHorizontal = new ArrayList<>();
-
-            drawables = loadImageFromAsset("MainRecycleView/Accessories");
-            List<String> description = loadStringFromAsset(R.array.Description);
-            List<String> installment = loadStringFromAsset(R.array.Installment);
-            List<String> price = loadStringFromAsset(R.array.Prices);
-
-            for(int j = 0; j < 5; j++){
-                HorizontalModel horizontalModel = new HorizontalModel();
-                horizontalModel.setIcon(drawables.get(j));
-                horizontalModel.setDescription(description.get(j));
-                horizontalModel.setInstallment(installment.get(j));
-                horizontalModel.setPrice(price.get(j));
-
-                arrayListHorizontal.add(horizontalModel);
-            }
-            verticalModel.setArrayList(arrayListHorizontal);
-
-            arrayListVertical.add(verticalModel);
+    @SuppressLint("NonConstantResourceId")
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
+        Fragment selectedFragment;
+        switch (item.getItemId()){
+            case R.id.page_1: selectedFragment = new HomeFragment(); break;
+            case R.id.page_2: selectedFragment = new FavouritesFragment(); break;
+            case R.id.page_3: selectedFragment = new ChatFragment(); break;
+            case R.id.page_4: selectedFragment = new CartFragment(); break;
+            case R.id.page_5: selectedFragment = new ProfileFragment(); break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + item.getItemId());
         }
-    }
-
-    public List<Drawable> loadImageFromAsset(String path){
-        List<Drawable> images = new ArrayList<>();
-        try {
-            for (int i = 1; i <= getAssets().list(path).length; i++) {
-                images.add(Drawable.createFromStream(getAssets().open(path + "/" + i + ".png"), null));
-            }
-        }
-        catch(IOException ex) {
-            ex.printStackTrace();
-        }
-        return images;
-    }
-    public List<String> loadStringFromAsset(int path){
-        return Arrays.asList(getResources().getStringArray(path));
-    }
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentcontainer,selectedFragment).commit();
+        return true;
+    };
 }
